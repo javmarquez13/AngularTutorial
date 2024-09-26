@@ -1,1 +1,29 @@
-<p>sidebar works!</p>
+<link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+
+<div class="side-bar">
+  <section>
+    <h1>Spotify</h1>
+  </section>
+
+  <div><i class="uil uil-ellipsis-h"></i></div>
+  <ul class="side-bar__list list-one">
+    <li *ngFor="let item of mainMenu.defaultOptions">
+      <div class="list-wrapper-item">
+        <i [ngClass]="['uil', item.icon]"></i>
+        <span class="side-bar__list list-label">{{ item.name }}</span>
+      </div>
+    </li>
+  </ul>
+
+  <div class="side-bar__separator">
+    <ul class="side-bar__list list-two"></ul>
+    <li *ngFor="let item of mainMenu.accessLink">
+        <div class="list-wrapper-item">
+            <i [ngClass]="['uil',item.icon]"></i>
+            <span class="side-bar__list list-label">{{item.name}}</span>
+        </div>
+    </li>
+    
+  </div>
+
+</div>

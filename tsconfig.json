@@ -22,20 +22,11 @@
     "target": "ES2022",
     "module": "ES2022",
     "paths": {
-      "@core/*" : [
-         "scr/app/core/*"
-      ],
-      "@modules/*" : [
-         "scr/app/modules/*"
-      ],
-      "@shared/*" : [
-         "scr/app/shared/*"
-      ]
-    },        
-    "lib": [
-      "ES2022",
-      "dom"
-    ]
+      "@core/*": ["scr/app/core/*"],
+      "@modules/*": ["scr/app/modules/*"],
+      "@shared/*": ["scr/app/shared/*"]
+    },
+    "lib": ["ES2022", "dom"]
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
