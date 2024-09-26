@@ -31,13 +31,36 @@ export class SidebarComponent implements OnInit {
         name: 'Buscar',
         icon: 'uil-search',
         route: '\buscar'
+      },
+      {
+        name: 'Biblioteca',
+        icon: 'uil-book',
+        route: '\buscar'
+      },
+      {
+        name: 'Crear lista',
+        icon: 'uil uil-create-dashboard',
+        route: '\buscar'
+      },
+      {
+        name: 'Canciones que te gustan',
+        icon: 'uil-heart',
+        route: '\buscar'
       }
     ]
 
     this.mainMenu.accessLink = [
       {
-        name: 'ola',
-        icon: 'uil-pathfinder'
+        name: 'Mi lista #1',
+        icon: ''
+      },
+      {
+        name: 'Mi lista #2',
+        icon: ''
+      },
+      {
+        name: 'Mi lista #3',
+        icon: ''
       }
     ]
   }
