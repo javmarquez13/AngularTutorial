@@ -4,7 +4,7 @@ import { DesignDhrPageComponent } from './pages/design-dhr-page/design-dhr-page.
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'dhr',
     component: DesignDhrPageComponent
   }
 ];

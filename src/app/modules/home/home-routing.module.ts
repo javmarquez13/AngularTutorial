@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Router, RouterModule, Routes, } from '@angular/router';
 import { HomePageComponent } from './pages/home-page/home-page.component';
-import { LoginComponent } from 'src/app/shared/components/login/login/login.component';
+import { LoginPageComponent } from './pages/login-page/login-page.component';
 
 const routes: Routes = [
   {
@@ -9,13 +9,15 @@ const routes: Routes = [
     component: HomePageComponent
   },
   {
-    path: 'Login',
-    component: LoginComponent
+    path: 'login',
+    component: LoginPageComponent
   }
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [
+    RouterModule,
+  ]
 })
 export class HomeRoutingModule { }

@@ -3,33 +3,37 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-login-page',
   standalone: true,
   imports: [
     MatInputModule,
     MatFormFieldModule,
     MatButtonModule,
-    CommonModule
+    CommonModule,
   ],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  templateUrl: './login-page.component.html',
+  styleUrl: './login-page.component.css'
 })
-export class LoginComponent implements OnInit {
+export class LoginPageComponent implements OnInit {
 
-  username = "";
-  public password = "";
+  public username: string = '';
+  public password: string = '';
 
-  constructor(){
+  constructor(private router: Router) {
 
   }
+
   ngOnInit(): void {
-    throw new Error('Method not implemented.');
-  }
-
-
-  public onButtonClick(){
 
   }
+
+
+  public onButtonClick() {
+    console.log("Clicked");
+    this.router.navigate(['design/dhr']);
+  }
+
 }
