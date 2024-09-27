@@ -6,8 +6,8 @@ import { CommonModule } from '@angular/common';
   selector: 'app-home-page',
   standalone: true,
   imports: [
-    //SidebarComponent,
-    //CommonModule
+    SidebarComponent,
+    CommonModule
   ],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.css'

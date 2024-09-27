@@ -1,57 +1,30 @@
-<!-- <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+<link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
 
 
-<div class="side-bar">
-  <section>
-    <h1>Jabil</h1>
-  </section>
+<div>
+  <mat-toolbar>
+    <button mat-icon-button (click)="toggleSidenav()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>eDHR</span>
+  </mat-toolbar>
+</div>
 
-  <div><i class="uil uil-ellipsis-h"></i></div>
-  <ul class="side-bar__list list-one">
-    <li *ngFor="let item of mainMenu.defaultOptions">
-      <div class="list-wrapper-item">
-        <i [ngClass]="['uil', item.icon]"></i>
-        <span class="side-bar__list list-label">{{ item.name }}</span>
-      </div>
-    </li>
-  </ul>
-
-  <div class="side-bar__separator">
-    <ul class="side-bar__list list-one"></ul>
-    <li *ngFor="let item of mainMenu.accessLink">
-        <div class="list-wrapper-item">
-            <i [ngClass]="['uil',item.icon]"></i>
-            <span class="side-bar__list list-label">{{item.name}}</span>
-        </div>
-    </li>
-  </div>
-</div> -->
-
-
-
-
-<!-- material design -->
 
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav mode="side" opened>
-    <mat-toolbar>Sidebar</mat-toolbar>
+  <mat-sidenav #sidenav mode="push" closed>
     <mat-nav-list>
-      <a mat-list-item href="#"><mat-icon>home</mat-icon> Home</a>
-      <a mat-list-item href="#"><mat-icon>info</mat-icon> About</a>
-      <a mat-list-item href="#"><mat-icon>contact_mail</mat-icon> Contact</a>
+      <li *ngFor="let item of mainMenu.defaultOptions">
+        <a mat-list-item href="#"><mat-icon>{{ item.icon }}</mat-icon> {{item.name}}</a>
+      </li>
     </mat-nav-list>
+    <mat-toolbar class="mat-toolbar-sidebar">Menu</mat-toolbar>
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <mat-toolbar>
-      <button mat-icon-button (click)="sidenav.toggle()">
-        <mat-icon>menu</mat-icon>
-      </button>
-      <span>My Application</span>
-    </mat-toolbar>
     <div class="content">
       <!-- Main content goes here -->
-      <h1>Welcome to the application!</h1>
+      <h1>Home</h1>
       <p>This is the content section</p>
     </div>
   </mat-sidenav-content>

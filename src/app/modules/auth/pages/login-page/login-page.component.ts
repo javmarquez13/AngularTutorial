@@ -33,5 +33,6 @@ export class LoginPageComponent implements OnInit {
   public onButtonClick() {
     console.log("Clicked");
     this.router.navigate(['/design/dhr']);
+    //this.router.navigate(['/home/dashboard']);
   }
 }

@@ -1,9 +1,5 @@
-import { isNgContainer } from '@angular/compiler';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
@@ -16,11 +12,11 @@ import { MatSidenav } from '@angular/material/sidenav';
   standalone: true,
   imports:
     [
-      BrowserAnimationsModule,
+      CommonModule,
       MatSidenavModule,
       MatListModule,
       MatIconModule,
-      MatToolbarModule
+      MatToolbarModule,
     ],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css',
@@ -49,25 +45,20 @@ export class SidebarComponent implements OnInit {
         route: '\home'
       },
       {
-        name: 'Buscar',
+        name: 'Deisgn DHR',
         icon: 'uil-search',
         route: '\buscar'
       },
       {
-        name: 'Biblioteca',
+        name: 'Login',
         icon: 'uil-book',
         route: '\buscar'
       },
       {
-        name: 'Crear lista',
+        name: 'Unloggin',
         icon: 'uil uil-create-dashboard',
         route: '\buscar'
       },
-      {
-        name: 'Canciones que te gustan',
-        icon: 'uil-heart',
-        route: '\buscar'
-      }
     ]
 
     this.mainMenu.accessLink = [
