@@ -1,59 +1,59 @@
 .side-bar {
-    width: 15.5rem;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    padding: .5rem 1rem;
-    /* background-color: red; */
+  width: 15.5rem;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: .5rem 1rem;
+  /* background-color: red; */
 }
 
 .side-bar__list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    opacity: .8;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  opacity: .8;
 }
 
-.side-bar__list .list-two{
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    opacity: .6;
+.side-bar__list .list-two {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  opacity: .6;
 }
 
 .side-bar__list .list-label {
-    font-size: 90%;
-    font-weight: 500;
+  font-size: 90%;
+  font-weight: 500;
 }
 
 .side-bar__list .list-wrapper-item {
-    font-size: var(--font-size-1);
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    align-content: center;
+  font-size: var(--font-size-1);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  align-content: center;
 }
 
 .side-bar__list .list-wrapper-item .uil {
-    font-size: var(--font-size-3);
-    padding-right: .5rem;
+  font-size: var(--font-size-3);
+  padding-right: .5rem;
 }
 
 .side-bar__separator {
-    margin: 1rem 0;
+  margin: 1rem 0;
 }
 
 .side-bar__separator.line-separator {
-    border-bottom: solid 1px var(--color-2);
+  border-bottom: solid 1px var(--color-2);
 }
 
 .side-bar__list.list-three .list-wrapper-item {
-    padding: .25rem 0;
+  padding: .25rem 0;
 }
 
 .side-bar__list li {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 
@@ -64,20 +64,51 @@
 
 /* MATERIAL SECTION */
 :host {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Display content in a column */
 .wrapper {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 .wrapper h1 {
-    /* Adjust margin-bottom */
-    margin-bottom: 1rem;
+  /* Adjust margin-bottom */
+  margin-bottom: 1rem;
+}
+
+
+
+
+/* material section */
+.sidenav-container {
+  height: 100vh;
+}
+
+mat-toolbar {
+  background-color: #3f51b5;
+  color: white;
+}
+
+.mat-toolbar-row,
+.mat-toolbar-single-row {
+  display: flex;
+  align-items: center;
+}
+
+mat-sidenav {
+  width: 250px;
+}
+
+mat-sidenav-content {
+  padding: 20px;
+}
+
+.content {
+  padding: 20px;
 }

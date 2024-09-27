@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DesignDHRModule } from '../../design-dhr.module';
 import { InputBoxComponent } from 'src/app/shared/components/FormFields/input-box/input-box.component';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { Router } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @Component({
@@ -10,8 +11,8 @@ import { CdkDragDrop } from '@angular/cdk/drag-drop';
   standalone: true,
   imports: [
     CommonModule,
-    DesignDHRModule,
-    InputBoxComponent
+    InputBoxComponent,
+    MatButtonModule
   ],
   templateUrl: './design-dhr-page.component.html',
   styleUrl: './design-dhr-page.component.css'
@@ -27,7 +28,7 @@ export class DesignDhrPageComponent implements OnInit {
 
   public form: { name: string; type: string }[] = [];
 
-  constructor() {
+  constructor(private router: Router) {
 
   }
 
@@ -35,7 +36,13 @@ export class DesignDhrPageComponent implements OnInit {
 
   }
 
-  drop(event: CdkDragDrop<any>) {
+
+  public onClickButton() {
+    this.router.navigate(['/home/dashboard'])
+  }
+
+
+  public drop(event: CdkDragDrop<any>) {
     this.form.push(this.ToolBoxCatalog[event.previousIndex]);
   }
 }
