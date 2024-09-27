@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 import { RouterOutlet } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { BaseModalComponent } from '../base-modal/base-modal.component';
-
+import { ConfirmationModalService } from '../../services/confirmationModal/confirmation-modal.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -43,7 +43,8 @@ export class SidebarComponent implements OnInit {
 
 
   constructor(private router: Router,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private confirmationModalService: ConfirmationModalService
   ) { }
 
   ngOnInit(): void {
@@ -110,12 +111,18 @@ export class SidebarComponent implements OnInit {
 
 
   public onLogoutClick(item: any) {
-    this.dialog.open(BaseModalComponent, {
-      data: {
-        title: 'Logout confirmation',
-        message: 'Are sure you that you want to close your season?'
-      }
-    });
+
+    this.confirmationModalService.openDialog('Are you sure?',
+      'confirmation Message')
+
+
+
+    // this.dialog.open(BaseModalComponent, {
+    //   data: {
+    //     title: 'Logout confirmation',
+    //     message: 'Are sure you that you want to close your season?'
+    //   }
+    // });
   }
 }
 
