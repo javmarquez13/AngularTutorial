@@ -8,6 +8,9 @@ import { MatSidenav } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { RouterOutlet } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { BaseModalComponent } from '../base-modal/base-modal.component';
+
 
 @Component({
   selector: 'app-sidebar',
@@ -20,7 +23,8 @@ import { RouterOutlet } from '@angular/router';
       MatIconModule,
       MatToolbarModule,
       MatButtonModule,
-      RouterOutlet
+      RouterOutlet,
+      BaseModalComponent
     ],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css',
@@ -38,7 +42,9 @@ export class SidebarComponent implements OnInit {
   } = { defaultOptions: [], accessLink: [] };
 
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+    private dialog: MatDialog
+  ) { }
 
   ngOnInit(): void {
     this.mainMenu.defaultOptions = [
@@ -53,6 +59,11 @@ export class SidebarComponent implements OnInit {
         route: '/design/dhr'
       },
       {
+        name: 'Admin',
+        icon: 'settings',
+        route: '/admin/configuration'
+      },
+      {
         name: 'Login',
         icon: 'login',
         route: ''
@@ -61,11 +72,6 @@ export class SidebarComponent implements OnInit {
         name: 'Logout',
         icon: 'close',
         route: ''
-      },
-      {
-        name: 'Admin',
-        icon: 'settings',
-        route: '/admin/configuration'
       },
     ]
 
@@ -91,9 +97,25 @@ export class SidebarComponent implements OnInit {
 
   public onItemMenuClickEvent(item: any) {
     console.log('clicked', item.route);
+
+
+    if (item.name === 'Logout') {
+      this.onLogoutClick(item);
+      return;
+    }
+
     this.router.navigate([item.route]);
     this.toggleSidenav();
-    //this.router.navigate(['/home/dashboard']);
+  }
+
+
+  public onLogoutClick(item: any) {
+    this.dialog.open(BaseModalComponent, {
+      data: {
+        title: 'Logout confirmation',
+        message: 'Are sure you that you want to close your season?'
+      }
+    });
   }
 }
 
