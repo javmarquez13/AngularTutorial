@@ -18,7 +18,6 @@ import { Router } from '@angular/router';
   styleUrl: './login-page.component.css'
 })
 export class LoginPageComponent implements OnInit {
-
   public username: string = '';
   public password: string = '';
 
@@ -35,5 +34,4 @@ export class LoginPageComponent implements OnInit {
     console.log("Clicked");
     this.router.navigate(['/design/dhr']);
   }
-
 }
