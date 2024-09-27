@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { DragDropModule } from '@angular/cdk/drag-drop';
-import { ReactiveFormsModule } from '@angular/forms';
 import { DesignDHRRoutingModule } from './design-dhr-routing.module';
+import { DesignDhrPageComponent } from './pages/design-dhr-page/design-dhr-page.component';
 
 
 @NgModule({
@@ -11,8 +10,7 @@ import { DesignDHRRoutingModule } from './design-dhr-routing.module';
   imports: [
     CommonModule,
     DesignDHRRoutingModule,
-    DragDropModule,
-    ReactiveFormsModule,
+    DesignDhrPageComponent
   ],
 })
 export class DesignDHRModule { }

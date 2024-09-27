@@ -11,6 +11,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginPageComponent
+  },
+  {
+    path: 'desgin',
+    loadChildren: () => import('../design-dhr/design-dhr.module').then(m => m.DesignDHRModule)
   }
 ];
 
