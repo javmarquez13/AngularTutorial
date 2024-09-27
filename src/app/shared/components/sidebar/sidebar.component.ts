@@ -6,7 +6,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenav } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
-
+import { Router } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
@@ -18,7 +19,8 @@ import { MatButtonModule } from '@angular/material/button';
       MatListModule,
       MatIconModule,
       MatToolbarModule,
-      MatButtonModule
+      MatButtonModule,
+      RouterOutlet
     ],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css',
@@ -36,35 +38,34 @@ export class SidebarComponent implements OnInit {
   } = { defaultOptions: [], accessLink: [] };
 
 
-
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     this.mainMenu.defaultOptions = [
       {
         name: 'Home',
         icon: 'home',
-        route: '\home'
+        route: '/home/dashboard'
       },
       {
         name: 'Deisgn DHR',
         icon: 'edit',
-        route: '\design/dhr'
+        route: '/design/dhr'
       },
       {
         name: 'Login',
         icon: 'login',
-        route: '\home\auth'
+        route: ''
       },
       {
         name: 'Logout',
         icon: 'close',
-        route: '\home\auth'
+        route: ''
       },
       {
         name: 'Admin',
         icon: 'settings',
-        route: '\Admin'
+        route: '/admin/configuration'
       },
     ]
 
@@ -86,6 +87,13 @@ export class SidebarComponent implements OnInit {
 
   public onButtonClick() {
     console.log("Clicked");
+  }
+
+  public onItemMenuClickEvent(item: any) {
+    console.log('clicked', item.route);
+    this.router.navigate([item.route]);
+    this.toggleSidenav();
+    //this.router.navigate(['/home/dashboard']);
   }
 }
 

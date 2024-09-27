@@ -6,6 +6,10 @@ const routes: Routes = [
   {
     path: 'dhr',
     component: DesignDhrPageComponent
+  },
+  {
+    path: '**',
+    redirectTo: '/design/dhr'
   }
 ];
 

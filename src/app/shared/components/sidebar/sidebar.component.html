@@ -1,13 +1,14 @@
 <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
 
-<header style="background-color: #3f51b5; color: white; padding: 10px; display: flex; align-items: center;">
+<!-- <header style="background-color: #3f51b5; color: white; padding: 10px; display: flex; align-items: center;">
   <button mat-mini-fab (click)="toggleSidenav()">
     <mat-icon>menu</mat-icon>
   </button>
-  <div style="display: flex; align-items: center; height: 45px;"> <!-- Adjust height as needed -->
+  <div style="display: flex; justify-content: space-between; align-items: center; height: 45px;">
     <h5 style="margin: 0; padding: 10px;">eDHR</h5>
+    <h5 style="margin: 0; padding: 10px; margin-right: right;">Welcome</h5>
   </div>
-</header>
+</header> -->
 
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #sidenav mode="push" closed>
@@ -15,19 +16,20 @@
     <mat-nav-list>
       <div>
         <li *ngFor="let item of mainMenu.defaultOptions">
-          <a mat-list-item href="#"><mat-icon>{{ item.icon }}</mat-icon> {{item.name}}</a>
+          <a mat-list-item (click)="onItemMenuClickEvent(item)"><mat-icon>{{ item.icon }}</mat-icon>
+            {{item.name}}</a>
         </li>
       </div>
-
     </mat-nav-list>
 
   </mat-sidenav>
 
   <mat-sidenav-content>
+    <button mat-mini-fab (click)="toggleSidenav()">
+      <mat-icon>menu</mat-icon>
+    </button>
     <div class="content">
-      <!-- Main content goes here -->
-      <h1>Home</h1>
-      <p>This is the content section</p>
+      <router-outlet></router-outlet>
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>

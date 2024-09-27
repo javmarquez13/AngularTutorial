@@ -4,6 +4,7 @@ import { InputBoxComponent } from 'src/app/shared/components/FormFields/input-bo
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
+import { SidebarComponent } from 'src/app/shared/components/sidebar/sidebar.component';
 
 
 @Component({
@@ -12,7 +13,8 @@ import { MatButtonModule } from '@angular/material/button';
   imports: [
     CommonModule,
     InputBoxComponent,
-    MatButtonModule
+    MatButtonModule,
+    SidebarComponent
   ],
   templateUrl: './design-dhr-page.component.html',
   styleUrl: './design-dhr-page.component.css'
