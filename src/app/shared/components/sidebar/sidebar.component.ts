@@ -99,30 +99,18 @@ export class SidebarComponent implements OnInit {
   public onItemMenuClickEvent(item: any) {
     console.log('clicked', item.route);
 
-
     if (item.name === 'Logout') {
-      this.onLogoutClick(item);
-      return;
+
+      const result = this.confirmationModalService.openDialog('Are you sure?',
+        'confirmation Message')
+
+      if (result!) {
+        return;
+      }
     }
 
     this.router.navigate([item.route]);
     this.toggleSidenav();
-  }
-
-
-  public onLogoutClick(item: any) {
-
-    this.confirmationModalService.openDialog('Are you sure?',
-      'confirmation Message')
-
-
-
-    // this.dialog.open(BaseModalComponent, {
-    //   data: {
-    //     title: 'Logout confirmation',
-    //     message: 'Are sure you that you want to close your season?'
-    //   }
-    // });
   }
 }
 
