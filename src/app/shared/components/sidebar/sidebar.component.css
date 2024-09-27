@@ -55,3 +55,29 @@
 .side-bar__list li {
     cursor: pointer;
 }
+
+
+
+
+
+
+
+/* MATERIAL SECTION */
+:host {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Display content in a column */
+.wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.wrapper h1 {
+    /* Adjust margin-bottom */
+    margin-bottom: 1rem;
+}

@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: 
   [
-    CommonModule
+    CommonModule,
   ],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css',
@@ -17,6 +17,8 @@ export class SidebarComponent implements OnInit {
     defaultOptions: Array<any>;
     accessLink: Array<any>;
   } = { defaultOptions: [], accessLink: [] };
+
+
 
   constructor() {}
 
@@ -64,4 +66,12 @@ export class SidebarComponent implements OnInit {
       }
     ]
   }
+
+  
+
+  public onButtonClick(){
+    console.log("Clicked");
+  }
 }
+
+

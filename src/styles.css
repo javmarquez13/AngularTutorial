@@ -1,19 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
-    --color-1: #1DB954;
-    --color-2: #323232;
-    --color-3: #000000;
-    --color-4: #FFFFFF;
-    --color-5: #181818;
-    --font-size-1: 1rem;
-    --font-size-2: 1.2rem;
-    --font-size-3: 1.8rem;
-    --shadow-1: rgb(0 0 0 / 35%) 0px 8px 24px;
-    --shadow-2: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    --border-radius-1: .25rem;
-    --border-radius-2: .5rem;
-    --font-family-1: 'Poppins', sans-serif;
-    --animation-1: 200ms;
+    --mat-indigo-50: #e8eaf6;
+    --mat-indigo-100: #c5cae9;
+    --mat-indigo-200: #9fa8da;
+    --mat-indigo-300: #7986cb;
+    --mat-indigo-400: #5c6bc0;
+    --mat-indigo-500: #3f51b5;
+    --mat-indigo-600: #3949ab;
+    --mat-indigo-700: #303f9f;
+    --mat-indigo-800: #283593;
+    --mat-indigo-900: #1a237e;
+    --mat-indigo-A100: #8c9eff;
+    --mat-indigo-A200: #536dfe;
+    --mat-indigo-A400: #3d5afe;
+    --mat-indigo-A700: #304ffe;
+  
+    --dark-primary-text: rgba(0, 0, 0, 0.87); /* Define dark text */
+    --light-primary-text: rgba(255, 255, 255, 1); /* Define light text */
+  
+    --mat-indigo-contrast-50: var(--dark-primary-text);
+    --mat-indigo-contrast-100: var(--dark-primary-text);
+    --mat-indigo-contrast-200: var(--dark-primary-text);
+    --mat-indigo-contrast-300: var(--light-primary-text);
+    --mat-indigo-contrast-400: var(--light-primary-text);
+    --mat-indigo-contrast-500: var(--light-primary-text);
+    --mat-indigo-contrast-600: var(--light-primary-text);
+    --mat-indigo-contrast-700: var(--light-primary-text);
+    --mat-indigo-contrast-800: var(--light-primary-text);
+    --mat-indigo-contrast-900: var(--light-primary-text);
+    --mat-indigo-contrast-A100: var(--dark-primary-text);
+    --mat-indigo-contrast-A200: var(--light-primary-text);
+    --mat-indigo-contrast-A400: var(--light-primary-text);
+    --mat-indigo-contrast-A700: var(--light-primary-text);   
 }
 
 html,
@@ -34,4 +52,17 @@ button {
 
 button:disabled {
     opacity: .5;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+      /* Example of applying the colors */
+.button-primary {
+     background-color: var(--mat-indigo-500);
+    color: var(--mat-indigo-contrast-500);
+}
+      
+.button-primary:hover {
+    background-color: var(--mat-indigo-700);
 }
