@@ -19,9 +19,6 @@ export class BaseModalComponent implements OnInit {
   public title: string = '';
   public message: string = '';
 
-
-
-
   constructor(@Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<BaseModalComponent>) {
 
