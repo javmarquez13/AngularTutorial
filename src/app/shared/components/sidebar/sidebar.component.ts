@@ -5,6 +5,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenav } from '@angular/material/sidenav';
+import { MatButtonModule } from '@angular/material/button';
 
 
 @Component({
@@ -17,6 +18,7 @@ import { MatSidenav } from '@angular/material/sidenav';
       MatListModule,
       MatIconModule,
       MatToolbarModule,
+      MatButtonModule
     ],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.css',
@@ -41,23 +43,28 @@ export class SidebarComponent implements OnInit {
     this.mainMenu.defaultOptions = [
       {
         name: 'Home',
-        icon: 'uil-estate',
+        icon: 'home',
         route: '\home'
       },
       {
         name: 'Deisgn DHR',
-        icon: 'uil-search',
-        route: '\buscar'
+        icon: 'edit',
+        route: '\design/dhr'
       },
       {
         name: 'Login',
-        icon: 'uil-book',
-        route: '\buscar'
+        icon: 'login',
+        route: '\home\auth'
       },
       {
-        name: 'Unloggin',
-        icon: 'uil uil-create-dashboard',
-        route: '\buscar'
+        name: 'Logout',
+        icon: 'close',
+        route: '\home\auth'
+      },
+      {
+        name: 'Admin',
+        icon: 'settings',
+        route: '\Admin'
       },
     ]
 

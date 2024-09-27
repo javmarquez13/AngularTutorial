@@ -1,24 +1,26 @@
 <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
 
-
-<div>
-  <mat-toolbar>
-    <button mat-icon-button (click)="toggleSidenav()">
-      <mat-icon>menu</mat-icon>
-    </button>
-    <span>eDHR</span>
-  </mat-toolbar>
-</div>
-
+<header style="background-color: #3f51b5; color: white; padding: 10px; display: flex; align-items: center;">
+  <button mat-mini-fab (click)="toggleSidenav()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <div style="display: flex; align-items: center; height: 45px;"> <!-- Adjust height as needed -->
+    <h5 style="margin: 0; padding: 10px;">eDHR</h5>
+  </div>
+</header>
 
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #sidenav mode="push" closed>
+    <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <li *ngFor="let item of mainMenu.defaultOptions">
-        <a mat-list-item href="#"><mat-icon>{{ item.icon }}</mat-icon> {{item.name}}</a>
-      </li>
+      <div>
+        <li *ngFor="let item of mainMenu.defaultOptions">
+          <a mat-list-item href="#"><mat-icon>{{ item.icon }}</mat-icon> {{item.name}}</a>
+        </li>
+      </div>
+
     </mat-nav-list>
-    <mat-toolbar class="mat-toolbar-sidebar">Menu</mat-toolbar>
+
   </mat-sidenav>
 
   <mat-sidenav-content>
