@@ -1,8 +1,7 @@
-<h4>Admin page</h4>
-
-
-
 <div>
+  <h4>Admin page</h4>
+
+  <mat-toolbar>Users catalog</mat-toolbar>
   <table mat-table [dataSource]="usersCatalog" class="mat-elevation-z8">
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef> Name </th>
@@ -19,5 +18,9 @@
       [ngClass]="{'selected-row': selectedRow === row}">
     </tr>
   </table>
-  <button mat-raised-button color="primary">Create</button>
+
+  <div style="display: flex; justify-content: flex-end; margin: 10px;">
+    <button mat-raised-button (click)="onCreateUpdateServiceClick(selectRow)">Create</button>
+  </div>
+
 </div>

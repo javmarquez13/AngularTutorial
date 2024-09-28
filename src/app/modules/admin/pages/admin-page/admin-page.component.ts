@@ -8,7 +8,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTableDataSource } from '@angular/material/table';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatToolbar } from '@angular/material/toolbar';
 
 interface User {
   name: string,
@@ -26,7 +27,8 @@ interface User {
     CommonModule,
     MatTable,
     MatTableModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatToolbarModule
   ],
   templateUrl: './admin-page.component.html',
   styleUrl: './admin-page.component.css'
@@ -54,7 +56,12 @@ export class AdminPageComponent implements OnInit {
 
 
 
-  selectRow(row: any) {
+  public selectRow(row: any) {
     this.selectedRow = row;
+  }
+
+
+  public onCreateUpdateServiceClick(selectedRow: any) {
+
   }
 }
