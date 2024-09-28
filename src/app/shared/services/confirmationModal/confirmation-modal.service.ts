@@ -11,8 +11,7 @@ export class ConfirmationModalService {
 
   }
 
-  public openDialog(title: string, message: string): boolean {
-    let resultado = true;
+  public openDialog(title: string, message: string) {
     const dialogRef = this.dialog.open(CconfirmationModalComponent, {
       data: {
         title: title,
@@ -20,19 +19,6 @@ export class ConfirmationModalService {
       }
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      resultado = result;
-    });
-
-
-    return resultado;
-  }
-
-
-
-  private onClosedDialog(result: boolean) {
-    if (result) {
-
-    }
+    return dialogRef.afterClosed();
   }
 }

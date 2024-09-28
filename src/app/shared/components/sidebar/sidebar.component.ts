@@ -100,17 +100,24 @@ export class SidebarComponent implements OnInit {
     console.log('clicked', item.route);
 
     if (item.name === 'Logout') {
-
-      const result = this.confirmationModalService.openDialog('Are you sure?',
-        'confirmation Message')
-
-      if (result!) {
-        return;
-      }
+      this.confirmationModalService.openDialog('Are you sure?',
+        'confirmation Message').subscribe((result: boolean) => {
+          if (result) {
+            this.router.navigate([item.route]);
+            this.toggleSidenav();
+          }
+          else {
+            console.log('Navegation canceled');
+            this.toggleSidenav();
+          }
+        })
+    }
+    else {
+      this.router.navigate([item.route]);
+      this.toggleSidenav();
     }
 
-    this.router.navigate([item.route]);
-    this.toggleSidenav();
+
   }
 }
 

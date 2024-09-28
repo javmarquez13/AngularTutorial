@@ -1,0 +1,13 @@
+.selected-row {
+  background-color: rgba(0, 0, 0, .5);
+  color: white;
+}
+
+.mat-row {
+  transition: background-color 0.1s;
+}
+
+.mat-row:hover {
+  background-color: rgba(38, 36, 36, .2);
+  /* Hover effect */
+}
