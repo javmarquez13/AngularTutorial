@@ -33,6 +33,16 @@ export const routes: Routes =
       ]
     },
     {
+      path: 'validator',
+      component: BasePageComponent,
+      children: [
+        {
+          path: '',
+          loadChildren: () => import('./modules/pdf-validator/pdf-validator.module').then(m => m.PdfValidatorModule)
+        }
+      ]
+    },
+    {
       path: 'admin',
       component: BasePageComponent,
       children: [

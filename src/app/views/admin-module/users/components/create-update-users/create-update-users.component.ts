@@ -10,9 +10,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 })
 export class CreateUpdateUsersComponent extends BaseModalComponent {
 
-  constructor(private dialog: MatDialog) {
 
-  }
 }
 
 

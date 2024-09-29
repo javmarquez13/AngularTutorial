@@ -60,6 +60,11 @@ export class SidebarComponent implements OnInit {
         route: '/design/dhr'
       },
       {
+        name: 'PDF Forms validator',
+        icon: 'X',
+        route: '/validator/pdf'
+      },
+      {
         name: 'Admin',
         icon: 'settings',
         route: '/admin/configuration'

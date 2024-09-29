@@ -1,0 +1,11 @@
+<h2 mat-dialog-title>Select a File</h2>
+<mat-dialog-content>
+  <input type="file" (change)="onFileSelected($event)" />
+  <div *ngIf="selectedFile">
+    <p>Selected File: {{ selectedFile.name }}</p>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-button (click)="onConfirm()" [disabled]="!selectedFile">Confirm</button>
+</mat-dialog-actions>

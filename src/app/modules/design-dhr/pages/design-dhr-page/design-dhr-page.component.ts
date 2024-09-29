@@ -5,7 +5,10 @@ import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { SidebarComponent } from 'src/app/shared/components/sidebar/sidebar.component';
-
+import { JsonPdfService } from 'src/app/shared/services/json-pdf/json-pdf.service';
+import { ApiRequestService } from 'src/app/shared/services/api-request/api-request.service';
+import { jsPDF } from 'jspdf';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-design-dhr-page',
@@ -21,16 +24,14 @@ import { SidebarComponent } from 'src/app/shared/components/sidebar/sidebar.comp
 })
 export class DesignDhrPageComponent implements OnInit {
 
-  public ToolBoxCatalog = [
-    {
-      name: 'Input Box',
-      type: 'InputBox'
-    },
-  ]
+  public doc: jsPDF = new jsPDF();
+  public pdfSrc: string | ArrayBuffer | null = null;
+  public safePdfUrl: SafeResourceUrl | null = null;
 
-  public form: { name: string; type: string }[] = [];
-
-  constructor(private router: Router) {
+  constructor(private pdfService: JsonPdfService,
+    private apiRequestService: ApiRequestService,
+    private sanitizer: DomSanitizer
+  ) {
 
   }
 
@@ -38,13 +39,25 @@ export class DesignDhrPageComponent implements OnInit {
 
   }
 
+  public generatePdfFromJson() {
+    const jsonUrl = 'https://0d60209a-56a8-4c4e-ba63-82c7530b5c23.mock.pstmn.io/pdf'; // Path to your JSON file or API URL
+    this.apiRequestService.fetchJsonData(jsonUrl).subscribe(
+      (data) => {
+        this.doc = this.pdfService.generatePDF(data);
+        console.log(data);
+        const pdfBlob = this.doc.output('blob');
+        const pdfURL = URL.createObjectURL(pdfBlob);
+        this.pdfSrc = pdfURL;
+        this.setPdfUrl(pdfURL);
 
-  public onClickButton() {
-    this.router.navigate(['/home/dashboard'])
+      },
+      (error) => {
+        console.error('Error fetching JSON data', error);
+      }
+    );
   }
 
-
-  public drop(event: CdkDragDrop<any>) {
-    this.form.push(this.ToolBoxCatalog[event.previousIndex]);
+  setPdfUrl(pdfUrl: string) {
+    this.safePdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl(pdfUrl);
   }
 }

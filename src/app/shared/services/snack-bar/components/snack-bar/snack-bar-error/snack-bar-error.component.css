@@ -1,0 +1,8 @@
+.error-snackbar {
+  color: white;
+  background-color: rgb(152, 17, 17);
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

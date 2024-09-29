@@ -1,1 +1,12 @@
 <h4>Design dhr page</h4>
+
+
+
+<div class="iframe-container" *ngIf="safePdfUrl">
+  <iframe [src]="safePdfUrl" class="responsive-iframe"></iframe>
+</div>
+
+
+<div style="display: flex; justify-content: flex-end; margin: 10px;">
+  <button mat-flat-button (click)="generatePdfFromJson()">Generate PDF</button>
+</div>

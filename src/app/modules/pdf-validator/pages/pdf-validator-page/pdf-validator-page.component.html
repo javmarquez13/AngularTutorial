@@ -1,0 +1,33 @@
+<div>
+
+  <h4>PDF Forms validator</h4>
+
+
+
+  <mat-toolbar>Fields Catalog</mat-toolbar>
+  <table mat-table [dataSource]="fields" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let field"> {{ field.name }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="type">
+      <th mat-header-cell *matHeaderCellDef> Type </th>
+      <td mat-cell *matCellDef="let field"> {{ field.type }} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+      [ngClass]="{'duplicate': highLightFilesDuplicated(row.name)}">
+    </tr>
+  </table>
+
+  <div style="display: flex; justify-content: flex-end; margin: 10px;">
+    <button mat-flat-button (click)="openFileDialog()">Load PDF</button>
+  </div>
+
+  <div style="display: flex; justify-content: flex-end; margin: 10px;">
+    <button mat-flat-button (click)="verifySnackBar()">Verify snackbar</button>
+  </div>
+</div>
