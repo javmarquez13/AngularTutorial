@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { PDFDocument } from 'pdf-lib';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { error, PDFDocument, PDFName } from 'pdf-lib';
 
 
 @Injectable({
@@ -7,7 +8,8 @@ import { PDFDocument } from 'pdf-lib';
 })
 export class PdfAnalyzerService {
 
-  constructor() { }
+
+  constructor(private sanitizer: DomSanitizer) { }
 
 
   async analyzePdf(file: File) {
@@ -16,12 +18,42 @@ export class PdfAnalyzerService {
     const form = pdfDoc.getForm();
     const fields = form.getFields();
 
-    return fields.map(field => ({
-      name: field.getName(),
-      type: field.constructor.name,
-    }));
+
+    const fieldDetails = fields.map(field => {
+      const fieldDict = field.acroField.dict;
+      const rect = fieldDict.get(PDFName.of('Rect'));  // Use PDFName here
+
+      return {
+        name: field.getName(),
+        type: field.constructor.name,
+        rect: rect?.toString(),
+      };
+    });
+
+    return fieldDetails;
   }
 
+  public async previewPdfUrl(file: File): Promise<any> {
+
+    try {
+      const arrayBuffer = await file.arrayBuffer();
+      const pdfDoc = await PDFDocument.load(arrayBuffer);
+
+      const pdfBytes = await pdfDoc.save();
+      const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+      const pdfBlobUrl = URL.createObjectURL(blob);
+
+      return this.sanitizer.bypassSecurityTrustResourceUrl(pdfBlobUrl);
+    }
+    catch (error) {
+      console.error(error);
+      return '';
+    }
+  }
+
+  setPdfUrl(pdfUrl: string) {
+
+  }
 
 
   public async analyzePdfForm(file: File) {

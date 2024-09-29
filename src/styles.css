@@ -87,16 +87,3 @@ body {
   background-color: red;
   color: white;
 }
-
-
-.custom-snackbar {
-  background-color: transparent !important;
-  /* Make background transparent */
-  box-shadow: none;
-  /* Remove any shadow if necessary */
-}
-
-.mat-snack-bar {
-  background: none;
-  /* Ensure the snackbar itself has no background */
-}

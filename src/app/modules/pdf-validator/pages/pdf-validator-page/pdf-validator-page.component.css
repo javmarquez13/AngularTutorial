@@ -2,3 +2,15 @@
   background-color: #ffcccc;
   /* Light red background for duplicates */
 }
+
+
+.table-container {
+  max-height: 400px;
+  /* Set the desired height */
+  overflow-y: auto;
+}
+
+table {
+  width: 50%;
+  /* Ensure the table takes full width */
+}

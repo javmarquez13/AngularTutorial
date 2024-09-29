@@ -1,33 +1,56 @@
-<div>
+<div style="display: flex; flex-direction: row;">
+  <!-- Left Column: Table -->
+  <div style="flex: 1; padding-right: 10px;">
+    <h4>PDF Forms Validator</h4>
+    <mat-toolbar>Fields Catalog</mat-toolbar>
+    <div class="table-container">
+      <table mat-table [dataSource]="fields" class="mat-elevation-z8">
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let field"> {{ field.name }} </td>
+        </ng-container>
 
-  <h4>PDF Forms validator</h4>
+        <ng-container matColumnDef="type">
+          <th mat-header-cell *matHeaderCellDef> Type </th>
+          <td mat-cell *matCellDef="let field"> {{ field.type }} </td>
+        </ng-container>
 
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: false"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+          [ngClass]="{'duplicate': highLightFilesDuplicated(row.name)}">
+        </tr>
+      </table>
+    </div>
 
-
-  <mat-toolbar>Fields Catalog</mat-toolbar>
-  <table mat-table [dataSource]="fields" class="mat-elevation-z8">
-
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef> Name </th>
-      <td mat-cell *matCellDef="let field"> {{ field.name }} </td>
-    </ng-container>
-
-    <ng-container matColumnDef="type">
-      <th mat-header-cell *matHeaderCellDef> Type </th>
-      <td mat-cell *matCellDef="let field"> {{ field.type }} </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"
-      [ngClass]="{'duplicate': highLightFilesDuplicated(row.name)}">
-    </tr>
-  </table>
-
-  <div style="display: flex; justify-content: flex-end; margin: 10px;">
-    <button mat-flat-button (click)="openFileDialog()">Load PDF</button>
+    <div style="display: flex; justify-content: flex-end; margin: 10px;">
+      <button mat-flat-button (click)="openFileDialog()">Load PDF</button>
+    </div>
+    <div style="display: flex; justify-content: flex-end; margin: 10px;">
+      <button mat-flat-button (click)="verifySnackBar()">Verify snackbar</button>
+    </div>
   </div>
 
-  <div style="display: flex; justify-content: flex-end; margin: 10px;">
-    <button mat-flat-button (click)="verifySnackBar()">Verify snackbar</button>
+
+  <!-- <div style="flex: 1; padding-left: 10px;">
+    <h4>PDF Preview</h4>
+    <div *ngIf="safePdfUrl">
+      <iframe [src]="safePdfUrl" width="100%" height="500px" style="border: 1px solid #ccc;"></iframe>
+    </div>
+  </div> -->
+
+
+  <div style="flex: 1; padding-left: 10px;">
+    <h4>PDF Preview</h4>
+    <div *ngIf="safePdfUrl" style="position: relative;">
+      <iframe [src]="safePdfUrl" width="100%" height="500px" style="border: 1px solid #ccc;"></iframe>
+
+      <!-- Overlay divs to mark form fields -->
+      <div *ngFor="let field of fields" [style.top.px]="calculateTop(field.rect)"
+        [style.left.px]="calculateLeft(field.rect)" [style.width.px]="calculateWidth(field.rect)"
+        [style.height.px]="calculateHeight(field.rect)"
+        style="position: absolute; border: 2px solid red; background-color: rgba(255, 0, 0, 0.2);">
+      </div>
+    </div>
   </div>
+
 </div>
