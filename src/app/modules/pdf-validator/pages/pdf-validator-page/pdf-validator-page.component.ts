@@ -1,21 +1,17 @@
 import { Component } from '@angular/core';
-import { MatButton } from '@angular/material/button';
 import { MatButtonModule } from '@angular/material/button';
 import { FileDialogService } from 'src/app/shared/services/file-dialog/file-dialog.service';
 import { PdfAnalyzerService } from '../../services/pdf-analyzer/pdf-analyzer.service';
-import { MatList } from '@angular/material/list';
-import { MatListItem } from '@angular/material/list';
-import { MatTable } from '@angular/material/table';
 import { MatTableModule } from '@angular/material/table';
-import { MatTableDataSource } from '@angular/material/table';
-import { SelectionModel } from '@angular/cdk/collections';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatToolbar } from '@angular/material/toolbar';
 import { CommonModule } from '@angular/common';
 import { SnackBarService } from 'src/app/shared/services/snack-bar/snack-bar.service';
 import { SafeResourceUrl } from '@angular/platform-browser';
 import { PDFObject } from 'pdf-lib';
+import { PDFDocument } from 'pdf-lib';
+import { OverlayRef } from '@angular/cdk/overlay';
+
 
 
 @Component({
@@ -44,9 +40,6 @@ export class PdfValidatorPageComponent {
 
   public safePdfUrl: SafeResourceUrl | null = null;
 
-  private scaleFactor: number = 1; // Adjust this as needed
-  private pdfHeight: number = 1; // Set this based on your PDF dimensions
-
   constructor(private fileDialogService: FileDialogService,
     private pdfAnalyzerService: PdfAnalyzerService,
     private snackBarService: SnackBarService
@@ -72,6 +65,7 @@ export class PdfValidatorPageComponent {
 
           if (this.selectedFile) {
             this.safePdfUrl = await this.pdfAnalyzerService.previewPdfUrl(this.selectedFile);
+            await this.renderPDF(this.selectedFile);
           }
         });
       }
@@ -85,9 +79,10 @@ export class PdfValidatorPageComponent {
     this.fields.forEach(field => {
       if (this.duplicates[field.name]) {
         this.duplicates[field.name]++;
+        result = true;
       } else {
         this.duplicates[field.name] = 1;
-        result = true;
+        result = false;
       }
     });
 
@@ -108,34 +103,58 @@ export class PdfValidatorPageComponent {
   }
 
 
-  calculateTop(rect: any): number {
-    // Convert PDF coordinate top to screen coordinates for the overlay
-    return this.convertPdfYToHtmlY(rect[3]);  // Assuming rect[3] is the top coordinate
+
+  async renderPDF(file: File) {
+    try {
+      const fileArrayBuffer = await file.arrayBuffer();
+      const pdfDoc = await PDFDocument.load(fileArrayBuffer);
+      const page = pdfDoc.getPage(0);
+
+      const { width, height } = page.getSize();
+      const canvas = document.getElementById('pdfCanvas') as HTMLCanvasElement;
+      const context = canvas.getContext('2d');
+
+      canvas.width = width;
+      canvas.height = height;
+
+      const pdfDataUri = await pdfDoc.saveAsBase64({ dataUri: true });
+      const img = new Image();
+
+      img.onload = () => {
+        if (context) {
+          context.drawImage(img, 0, 0);
+          this.highlightFields();
+        }
+      };
+      img.src = pdfDataUri;
+    }
+    catch (error) {
+      console.error(error);
+    }
+
   }
 
-  calculateLeft(rect: any): number {
-    // Convert PDF coordinate left to screen coordinates for the overlay
-    return this.convertPdfXToHtmlX(rect[0]);  // Assuming rect[0] is the left coordinate
+  highlightFields() {
+    const overlay = document.getElementById('highlightOverlay');
+
+    // Example fields to highlight
+    const fields = [
+      { x: 50, y: 50, width: 100, height: 30 },
+      { x: 200, y: 200, width: 150, height: 30 },
+    ];
+
+    fields.forEach(field => {
+      const highlightDiv = document.createElement('div');
+      highlightDiv.style.left = `${field.x}px`;
+      highlightDiv.style.top = `${field.y}px`;
+      highlightDiv.style.width = `${field.width}px`;
+      highlightDiv.style.height = `${field.height}px`;
+
+      if (overlay) {
+        overlay.appendChild(highlightDiv);
+      }
+    });
   }
 
-  calculateWidth(rect: any): number {
-    // Convert width from PDF coordinates to screen width
-    return Math.abs(rect[2] - rect[0]);
-  }
-
-  calculateHeight(rect: any): number {
-    // Convert height from PDF coordinates to screen height
-    return Math.abs(rect[3] - rect[1]);
-  }
-
-  convertPdfXToHtmlX(pdfX: number): number {
-    // Convert PDF X coordinate to HTML X coordinate (this would depend on scaling)
-    return pdfX * this.scaleFactor;  // You may need to calculate the scale factor
-  }
-
-  convertPdfYToHtmlY(pdfY: number): number {
-    // Convert PDF Y coordinate to HTML Y coordinate (this would depend on scaling)
-    return (this.pdfHeight - pdfY) * this.scaleFactor;  // Invert Y axis for HTML
-  }
 
 }

@@ -26,7 +26,7 @@ export class PdfAnalyzerService {
       return {
         name: field.getName(),
         type: field.constructor.name,
-        rect: rect?.toString(),
+        rect: rect,
       };
     });
 
@@ -51,9 +51,18 @@ export class PdfAnalyzerService {
     }
   }
 
-  setPdfUrl(pdfUrl: string) {
 
-  }
+
+
+
+
+
+
+
+
+
+
+
 
 
   public async analyzePdfForm(file: File) {

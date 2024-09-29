@@ -31,26 +31,16 @@
   </div>
 
 
-  <!-- <div style="flex: 1; padding-left: 10px;">
+  <div style="flex: 1; padding-left: 10px;">
     <h4>PDF Preview</h4>
     <div *ngIf="safePdfUrl">
       <iframe [src]="safePdfUrl" width="100%" height="500px" style="border: 1px solid #ccc;"></iframe>
     </div>
-  </div> -->
-
-
-  <div style="flex: 1; padding-left: 10px;">
-    <h4>PDF Preview</h4>
-    <div *ngIf="safePdfUrl" style="position: relative;">
-      <iframe [src]="safePdfUrl" width="100%" height="500px" style="border: 1px solid #ccc;"></iframe>
-
-      <!-- Overlay divs to mark form fields -->
-      <div *ngFor="let field of fields" [style.top.px]="calculateTop(field.rect)"
-        [style.left.px]="calculateLeft(field.rect)" [style.width.px]="calculateWidth(field.rect)"
-        [style.height.px]="calculateHeight(field.rect)"
-        style="position: absolute; border: 2px solid red; background-color: rgba(255, 0, 0, 0.2);">
-      </div>
-    </div>
   </div>
+
+  <!-- <div style="position: relative;">
+    <canvas id="pdfCanvas"></canvas>
+    <div id="highlightOverlay" style="position: absolute; pointer-events: none;"></div>
+  </div> -->
 
 </div>
